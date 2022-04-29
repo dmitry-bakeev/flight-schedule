@@ -26,3 +26,11 @@ func (s *FlightService) CreateMultiple(flights []*models.Flight) error {
 
 	return s.repo.CreateMultiple(flights)
 }
+
+func (s *FlightService) FilterFromCity(city string) ([]*models.Flight, error) {
+	return s.repo.FilterFromCity(city)
+}
+
+func (s *FlightService) FilterToCity(city string) ([]*models.Flight, error) {
+	return s.repo.FilterToCity(city)
+}

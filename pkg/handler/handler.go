@@ -24,6 +24,7 @@ func (h *Handler) InitRoutes() *mux.Router {
 	api.Use(h.JSONMiddleware)
 	{
 		api.HandleFunc("/flight", h.CreateMultiple).Methods(http.MethodPost)
+		api.HandleFunc("/flight", h.GetAll).Methods(http.MethodGet)
 	}
 	return router
 }

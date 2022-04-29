@@ -7,6 +7,8 @@ import (
 
 type Flight interface {
 	CreateMultiple(flights []*models.Flight) error
+	FilterFromCity(city string) ([]*models.Flight, error)
+	FilterToCity(city string) ([]*models.Flight, error)
 }
 
 type Service struct {

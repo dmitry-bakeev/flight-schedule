@@ -8,6 +8,8 @@ import (
 type Flight interface {
 	CreateMultiple(flights []*models.Flight) error
 	GetAll() ([]*models.Flight, error)
+	FilterFromCity(city string) ([]*models.Flight, error)
+	FilterToCity(city string) ([]*models.Flight, error)
 }
 
 type Repository struct {
