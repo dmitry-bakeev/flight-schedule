@@ -21,6 +21,7 @@ func (h *Handler) InitRoutes() *mux.Router {
 	router := mux.NewRouter()
 
 	api := router.PathPrefix("/api").Subrouter()
+	api.Use(h.JSONMiddleware)
 	{
 		api.HandleFunc("/flight", h.CreateMultiple).Methods(http.MethodPost)
 	}
