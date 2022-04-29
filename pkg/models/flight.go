@@ -8,11 +8,11 @@ import (
 
 type Flight struct {
 	Id           int
-	NumberFlight int       `db:"number_flight"`
-	FromCity     string    `db:"from_city"`
-	TimeFromCity time.Time `db:"time_from_city"`
-	ToCity       string    `db:"to_city"`
-	TimeToCity   time.Time `db:"time_to_city"`
+	NumberFlight int       `db:"number_flight" json:"number_flight"`
+	FromCity     string    `db:"from_city" json:"from_city"`
+	TimeFromCity time.Time `db:"time_from_city" json:"time_from_city"`
+	ToCity       string    `db:"to_city" json:"to_city"`
+	TimeToCity   time.Time `db:"time_to_city" json:"time_to_city"`
 }
 
 func (f *Flight) Validate() error {
