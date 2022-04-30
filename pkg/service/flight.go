@@ -34,3 +34,23 @@ func (s *FlightService) FilterFromCity(city string) ([]*models.Flight, error) {
 func (s *FlightService) FilterToCity(city string) ([]*models.Flight, error) {
 	return s.repo.FilterToCity(city)
 }
+
+func (s *FlightService) OrderByNumberFlight(desc bool) ([]*models.Flight, error) {
+	return s.repo.Order("number_flight", desc)
+}
+
+func (s *FlightService) OrderByFromCity(desc bool) ([]*models.Flight, error) {
+	return s.repo.Order("from_city", desc)
+}
+
+func (s *FlightService) OrderByTimeFromCity(desc bool) ([]*models.Flight, error) {
+	return s.repo.Order("time_from_city", desc)
+}
+
+func (s *FlightService) OrderByToCity(desc bool) ([]*models.Flight, error) {
+	return s.repo.Order("to_city", desc)
+}
+
+func (s *FlightService) OrderByTimeToCity(desc bool) ([]*models.Flight, error) {
+	return s.repo.Order("time_to_city", desc)
+}

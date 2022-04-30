@@ -41,11 +41,28 @@ func (r *FlightPostgres) FilterFromCity(city string) ([]*models.Flight, error) {
 
 	return result, err
 }
+
 func (r *FlightPostgres) FilterToCity(city string) ([]*models.Flight, error) {
 	var result []*models.Flight
 
 	query := fmt.Sprintf("SELECT number_flight, from_city, time_from_city, to_city, time_to_city FROM %s WHERE to_city = $1", flightTable)
 	err := r.db.Select(&result, query, city)
+
+	return result, err
+}
+
+func (r *FlightPostgres) Order(field string, desc bool) ([]*models.Flight, error) {
+	var result []*models.Flight
+	var order string
+
+	if desc {
+		order = "DESC"
+	} else {
+		order = "ASC"
+	}
+
+	query := fmt.Sprintf("SELECT number_flight, from_city, time_from_city, to_city, time_to_city FROM %s ORDER BY %s %s", flightTable, field, order)
+	err := r.db.Select(&result, query)
 
 	return result, err
 }

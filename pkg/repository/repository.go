@@ -10,6 +10,7 @@ type Flight interface {
 	GetAll() ([]*models.Flight, error)
 	FilterFromCity(city string) ([]*models.Flight, error)
 	FilterToCity(city string) ([]*models.Flight, error)
+	Order(field string, desc bool) ([]*models.Flight, error)
 }
 
 type Repository struct {

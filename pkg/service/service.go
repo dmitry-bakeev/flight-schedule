@@ -9,6 +9,11 @@ type Flight interface {
 	CreateMultiple(flights []*models.Flight) error
 	FilterFromCity(city string) ([]*models.Flight, error)
 	FilterToCity(city string) ([]*models.Flight, error)
+	OrderByNumberFlight(desc bool) ([]*models.Flight, error)
+	OrderByFromCity(desc bool) ([]*models.Flight, error)
+	OrderByTimeFromCity(desc bool) ([]*models.Flight, error)
+	OrderByToCity(desc bool) ([]*models.Flight, error)
+	OrderByTimeToCity(desc bool) ([]*models.Flight, error)
 }
 
 type Service struct {
