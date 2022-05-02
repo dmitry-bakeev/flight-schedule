@@ -5,6 +5,7 @@ import (
 
 	"github.com/dmitry-bakeev/flight-schedule/pkg/models"
 	"github.com/dmitry-bakeev/flight-schedule/pkg/repository"
+	"github.com/dmitry-bakeev/flight-schedule/sort"
 )
 
 type FlightService struct {
@@ -36,7 +37,22 @@ func (s *FlightService) FilterToCity(city string) ([]*models.Flight, error) {
 }
 
 func (s *FlightService) OrderByNumberFlight(desc bool) ([]*models.Flight, error) {
-	return s.repo.Order("number_flight", desc)
+	flights, err := s.repo.GetAll()
+	if err != nil {
+		return nil, err
+	}
+
+	sorted := make(chan []*models.Flight)
+	go sort.MergeSort(flights, sorted)
+
+	result := <-sorted
+	close(sorted)
+
+	if desc {
+		sort.Reverse(result)
+	}
+
+	return result, nil
 }
 
 func (s *FlightService) OrderByFromCity(desc bool) ([]*models.Flight, error) {
